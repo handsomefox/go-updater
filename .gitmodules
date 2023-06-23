@@ -1,0 +1,3 @@
+[submodule "vendor/update-golang"]
+	path = vendor/update-golang
+	url = https://github.com/udhos/update-golang
