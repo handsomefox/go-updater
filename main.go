@@ -46,9 +46,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	os.Args[0] = temp + "/vendor/update-golang/update-golang.sh"
+	args := []string{
+		"-c",
+		temp + "/vendor/update-golang/update-golang.sh",
+	}
+	args = append(args, os.Args[1:]...)
 
-	cmd = exec.Command("sudo", os.Args...)
+	cmd = exec.Command("/bin/sh", args...)
+	cmd.Env = os.Environ()
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
